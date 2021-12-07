@@ -1,0 +1,68 @@
+# trainer config
+runner: 'trainer_final'
+model: "graph2seq_final"
+cnn_encoder: "resnet_encoder"
+text_encoder: "rnn_encoder"
+graph_encoder: "graph_encoder_final_vh"
+gnn: "gcn_spectral"
+seq_decoder: "hie_rnn_decoder_base"
+log_path: 'log/rebuttal_0.005_0.001_0.001_epsilon_0.75.txt'
+checkpoint_path: 'save/rebuttal_0.005_0.001_0.001_epsilon_0.75'
+save_dir: "results/rebuttal_0.005_0.001_0.001_epsilon_0.75/"
+
+# hyper-parameter
+vh_weight: 0.005
+pos_weight: 0.001
+ans_weight: 0.001
+
+# dataset config
+train_split_dic_path: "/home/shiina/data/aaai/vqa2/train_split_dic_unique_90.pkl"
+val_split_dic_path: "/home/shiina/data/aaai/vqa2/train_split_dic_unique_10.pkl"
+test_split_dic_path: "/home/shiina/data/aaai/vqa2/val_split_dic_unique.pkl"
+vocab_path: "/home/shiina/shiina/question/aaai/data/vqa2/vqa2_vocab.json"
+answer_path: "/home/shiina/data/aaai/vqa2/answer_list.pkl"
+image_size: 576
+image_crop_size: 512
+text_max_length: 20
+ppl_num: 100
+answer_amount: 16367
+
+# training config
+batch_size: 60
+epoch_all: 40
+num_workers: 12
+learning_rate: 2e-4
+optim_alpha: 0.9
+optim_beta: 0.999
+optim_epsilon: 1e-8
+weight_decay: 0
+cnn_learning_rate: 1e-5
+cnn_weight_decay: 0
+cnn_optim_alpha: 0.8
+cnn_optim_beta: 0.999
+lr_scheduler: "ExponentialLR"
+gamma: 0.8
+lr_decay_epoch_start: 5
+lr_decay_epoch_num: 3
+graph_enc_teacher_forcing: 0
+
+# model parameters
+hidden_size: 1024
+dropout: 0.2
+
+# cnn config
+cnn_backend: "resnet101"
+cnn_weight_path: "/home/shiina/shiina/question/aaai/data/imagenet_weights"
+fixed_block: 4 # fix all blocks
+cnn_out_dim: 2048
+
+# text encoder config
+encoder_style: "mean"
+word_dim: 512
+
+# gnn config
+proposal_dim: 1024
+loc_feats_dim: 300
+visual_hint_dim: 300
+topk: 15
+epsilon: 0.75
